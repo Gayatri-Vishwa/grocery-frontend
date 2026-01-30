@@ -18,6 +18,7 @@ import SellerLogin from './components/seller/SellerLogin'
 import AddProducts from './pages/seller/AddProducts'
 import ProductList from './pages/seller/ProductList'
 import Orders from './pages/seller/Orders'
+import EditProduct from './pages/seller/EditProduct'
 
 function App() {
 const {showUserLogin ,logoutUser , isSeller}=useContext(AppContext)
@@ -46,6 +47,8 @@ const isSellerPath =useLocation().pathname.includes('/seller')   //path dfine fo
 {/*  no need  / slash in child path of seller*/}
       <Route path="/seller" element={isSeller ?<Sellerlayout/>:<SellerLogin/>}> 
             <Route path='add-product' index element={isSeller?<AddProducts/>:null}/>
+            <Route path="/seller/edit-product/:id" element={<EditProduct />} />
+
             <Route path='product-list' element={isSeller?<ProductList/>:null}/>
             <Route path='orders' element={isSeller?<Orders/>:null}/>
             
