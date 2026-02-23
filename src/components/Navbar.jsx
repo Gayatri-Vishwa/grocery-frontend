@@ -176,7 +176,7 @@ const Navbar = () => {
         <Link to="/seller" className="block" onClick={() => setOpen(false)}>
           Seller Portal
         </Link>
-        {user ? (
+        {/* {user ? (
           <>
             <div className="relative group">
               <img src={assets.profile_icon} alt="img" className="w-8" />
@@ -218,7 +218,37 @@ const Navbar = () => {
               Login
             </button>
           </>
-        )}
+        )} */}
+        {user ? (
+  <div className="flex flex-col gap-2">
+    <button
+      onClick={() => {
+        navigate("/my-orders");
+        setOpen(false); // close mobile menu
+      }}
+      className="px-4 py-2 text-left w-full"
+    >
+      My Orders
+    </button>
+    <button
+      onClick={() => {
+        logoutUser();
+        setUser(null);
+        setOpen(false); // close mobile menu
+      }}
+      className="px-4 py-2 text-left w-full"
+    >
+      Logout
+    </button>
+  </div>
+) : (
+  <button
+    onClick={() => setShowUserLogin(true)}
+    className="px-8 py-2 bg-indigo-500 text-white rounded-full"
+  >
+    Login
+  </button>
+)}
       </div>
     </nav>
   );
