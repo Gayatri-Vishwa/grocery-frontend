@@ -14,6 +14,7 @@ function SellerLogin() {
     }
   }, [isSeller,navigate]);
 
+
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
@@ -21,13 +22,18 @@ function SellerLogin() {
         email,
         password,
 }, { withCredentials: true });
-      if(data.success){
-          console.log(" email ", email, " password ", password);
-         setIsSeller(true);
-         navigate('/seller')
-          toast.success(data.message)
-           console.log(" email ", email, " password ", password);
-      }else{
+      // if(data.success){
+      //     console.log(" email ", email, " password ", password);
+      //    setIsSeller(true);
+      //    navigate('/seller')
+      //     toast.success(data.message)
+      //      console.log(" email ", email, " password ", password);
+      // }
+        if (data.success) {
+  setIsSeller(true);
+  toast.success(data.message);
+}
+      else{
         toast.error(data.message)
       }
       // console.log(" email ", email, " password ", password);
