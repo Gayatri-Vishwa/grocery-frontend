@@ -185,7 +185,7 @@ const Navbar = () => {
         navigate("/my-orders");
         setOpen(false); // close mobile menu
       }}
-      className="px-4 py-2 text-left w-full"
+      className="block"
     >
       My Orders
     </button>
@@ -195,7 +195,7 @@ const Navbar = () => {
         setUser(null);
         setOpen(false); // close mobile menu
       }}
-      className="px-4 py-2 text-left w-full"
+      className="block bg-blue-500 text-white px-4 py-2 rounded-md"
     >
       Logout
     </button>
