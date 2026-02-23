@@ -22,9 +22,9 @@ function Hero() {
         Explore Deals
         <img src={assets.white_arrow_icon} alt="" className='md:hidden transition group-focus:translate-1 '/>
         </Link>
-        <Link to='/seller' className='hidden md:flex group items-center gap-2 px-7 rounded text-white py-3 bg-primary cursor-pointer'>
+        {/* <Link to='/seller' className='hidden md:flex group items-center gap-2 px-7 rounded text-white py-3 bg-primary cursor-pointer'>
         Seller Portal
-        </Link>
+        </Link> */}
     </div>
       </div>
 
