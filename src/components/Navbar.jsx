@@ -176,51 +176,10 @@ const Navbar = () => {
         <Link to="/seller" className="block" onClick={() => setOpen(false)}>
           Seller Portal
         </Link>
-        {/* {user ? (
-          <>
-            <div className="relative group">
-              <img src={assets.profile_icon} alt="img" className="w-8" />
-              <ul className="hidden group-hover:block absolute top-10 right-0 bg-white shadow-md border border-gray-200 y-2 w-30 z-40 test-sm">
-                <li
-                  className="p-1.5 cursor-pointer"
-                  onClick={() => navigate("/my-orders")}
-                >
-                  My Orders
-                </li>
-                <li
-                  className="p-1.5 cursor-pointer"
-                  //  onClick={() => {
-                  //      logoutUser();
-                  //       setUser(null);
-                  //       setMenuOpen(false);
-                  //       navigate("/");
-                  //     }}
-                  onClick={() => {
-                    logoutUser();
-                    setOpen(false); // close mobile menu
-                    setMenuOpen(false); // close dropdown
-                    navigate("/");
-                  }}
-                >
-                  Logout
-                </li>
-              </ul>
-            </div>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={() => {
-                setShowUserLogin(true);
-              }}
-              className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full"
-            >
-              Login
-            </button>
-          </>
-        )} */}
+    
         {user ? (
-  <div className="flex flex-col gap-2">
+  // <div className="flex flex-col gap-2">
+  <>
     <button
       onClick={() => {
         navigate("/my-orders");
@@ -240,7 +199,7 @@ const Navbar = () => {
     >
       Logout
     </button>
-  </div>
+  </>
 ) : (
   <button
     onClick={() => setShowUserLogin(true)}
