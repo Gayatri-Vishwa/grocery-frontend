@@ -175,16 +175,16 @@ const Navbar = () => {
           open ? "flex" : "hidden"
         } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
       > */}
-        <a href="#" className="block">
+        <a href="/" className="block">
           Home
         </a>
-        <a href="#" className="block">
-          About
+        <a href="/my-orders" className="block">
+         My Orders
         </a>
-        <a href="#" className="block">
-          Contact
+        <a href="/seller" className="block">
+         Seller Portal
         </a>
-        <a href="/seller">Seller Portal</a>
+        <a href="/logout">Logout</a>
         {user ? (
           <>
             <div className="relative group">
@@ -209,10 +209,16 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <button className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full">
+     <>
+        <button className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full">
             Login
           </button>
+
+     </>
+
+        
         )}
+
       </div>
     </nav>
   );
