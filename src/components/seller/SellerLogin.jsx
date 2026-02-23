@@ -41,7 +41,10 @@ function SellerLogin() {
        !isSeller && (
     <div // it will make the form close when click outside the login form but issue  frorm also close so    //    we have to add onclick((e)=> e.stopPropagation()) on form
    
-      onClick={() => setShowUserLogin(false)}
+      onClick={(e) => {
+        setShowUserLogin(false);
+        e.stopPropagation();
+      }}
       className="fixed top-0 bottom-0 left-0 right-0 z-40 flex items-center justify-center bg-black/50 text-gray-600"
     >
       <form
