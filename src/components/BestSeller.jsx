@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 function BestSeller() {
   const { products } = useContext(AppContext);
   return (
-    <div className="mt-16">
+    <div className="mt-16" onClick={ (e)=>e.stopPropagation()}>
       <p className="text-2xl font-medium md:text-3xl">Best Seller</p>
       <div className="my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center justify-center">
         {products &&

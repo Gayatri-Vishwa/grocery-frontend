@@ -164,16 +164,14 @@ const Navbar = () => {
           open ? "flex" : "hidden"
         } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
       >
-        <a href="/" className="block">
-          Home
-        </a>
+      
         <Link to="/" className="block" onClick={() => setOpen(false)}>
           Home
         </Link>
 
-        <Link to="/my-orders" className="block" onClick={() => setOpen(false)}>
+        {/* <Link to="/my-orders" className="block" onClick={() => setOpen(false)}>
           My Orders
-        </Link>
+        </Link> */}
 
         <Link to="/seller" className="block" onClick={() => setOpen(false)}>
           Seller Portal
