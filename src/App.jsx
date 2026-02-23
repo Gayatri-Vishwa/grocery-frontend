@@ -47,7 +47,7 @@ const isSellerPath =useLocation().pathname.includes('/seller')   //path dfine fo
 {/*  no need  / slash in child path of seller*/}
       <Route path="/seller" element={isSeller ?<Sellerlayout/>:<SellerLogin/>}> 
             <Route path='add-product' index element={isSeller?<AddProducts/>:null}/>
-            <Route path="/edit-product/:id" element={<EditProduct />} />
+            <Route path="/seller/edit-product/:id" element={<EditProduct />} />
 
             <Route path='product-list' element={isSeller?<ProductList/>:null}/>
             <Route path='orders' element={isSeller?<Orders/>:null}/>
