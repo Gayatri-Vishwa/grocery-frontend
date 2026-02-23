@@ -175,7 +175,7 @@ const Navbar = () => {
         <a href="/seller" className="block">
          Seller Portal
         </a>
-        <a href="/logout">Logout</a>
+        {/* <a href="/logout">Logout</a> */}
         {user ? (
           <>
             <div className="relative group">
@@ -189,12 +189,12 @@ const Navbar = () => {
                 </li>
                 <li
                   className="p-1.5 cursor-pointer"
-                  onClick={() => {
-                    setUser(null);
-                    logoutUser();
-                    navigate("/");
-                   
-                  }}
+                 onClick={() => {
+                     logoutUser();
+                      setUser(null);
+                      setMenuOpen(false);
+                      navigate("/");
+                    }}
                 >
                   Logout
                 </li>
