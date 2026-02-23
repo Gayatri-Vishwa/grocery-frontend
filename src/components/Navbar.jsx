@@ -24,15 +24,19 @@ const Navbar = () => {
     }
   }, [searchQuery, navigate]);
 
-
-
-
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (!user) {
+      setMenuOpen(false);
+      setOpen(false);
+    }
+  }, [user]);
+
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative z-50">
-    {/* // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all"> */}
+      {/* // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all"> */}
       <Link className="text-2xl text-red-600 font-bold" to={"/"}>
         Grocery App
       </Link>
@@ -89,7 +93,6 @@ const Navbar = () => {
         {/*  conditional redering of login button */}
         {user ? (
           <>
-           
             <div className="relative group">
               <img
                 src={assets.profile_icon}
@@ -111,7 +114,7 @@ const Navbar = () => {
                   <li
                     className="p-1.5 hover:bg-gray-100 cursor-pointer"
                     onClick={() => {
-                     logoutUser();
+                      logoutUser();
                       setUser(null);
                       setMenuOpen(false);
                       navigate("/");
@@ -125,9 +128,9 @@ const Navbar = () => {
           </>
         ) : (
           <button
-            onClick={() => {setShowUserLogin(true)
-              menuOpen(false)
-            
+            onClick={() => {
+              setShowUserLogin(true);
+              menuOpen(false);
             }}
             className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full"
           >
@@ -157,25 +160,24 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-  className={`${
-    open ? "flex" : "hidden"
-  } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
->
-      {/* <div
         className={`${
           open ? "flex" : "hidden"
-        } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
-      > */}
+        } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
+      >
         <a href="/" className="block">
           Home
         </a>
-        <a href="/my-orders" className="block">
-         My Orders
-        </a>
-        <a href="/seller" className="block">
-         Seller Portal
-        </a>
-        {/* <a href="/logout">Logout</a> */}
+        <Link to="/" className="block" onClick={() => setOpen(false)}>
+          Home
+        </Link>
+
+        <Link to="/my-orders" className="block" onClick={() => setOpen(false)}>
+          My Orders
+        </Link>
+
+        <Link to="/seller" className="block" onClick={() => setOpen(false)}>
+          Seller Portal
+        </Link>
         {user ? (
           <>
             <div className="relative group">
@@ -189,12 +191,18 @@ const Navbar = () => {
                 </li>
                 <li
                   className="p-1.5 cursor-pointer"
-                 onClick={() => {
-                     logoutUser();
-                      setUser(null);
-                      setMenuOpen(false);
-                      navigate("/");
-                    }}
+                  //  onClick={() => {
+                  //      logoutUser();
+                  //       setUser(null);
+                  //       setMenuOpen(false);
+                  //       navigate("/");
+                  //     }}
+                  onClick={() => {
+                    logoutUser();
+                    setOpen(false); // close mobile menu
+                    setMenuOpen(false); // close dropdown
+                    navigate("/");
+                  }}
                 >
                   Logout
                 </li>
@@ -202,21 +210,17 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-     <>
-         <button
-            onClick={() => {setShowUserLogin(true)
-            
-            }}
-            className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full"
-          >
-            Login
-          </button>
-
-     </>
-
-        
+          <>
+            <button
+              onClick={() => {
+                setShowUserLogin(true);
+              }}
+              className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition-all  text-white rounded-full"
+            >
+              Login
+            </button>
+          </>
         )}
-
       </div>
     </nav>
   );

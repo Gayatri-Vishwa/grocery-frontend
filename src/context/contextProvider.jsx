@@ -24,7 +24,21 @@ let server_url='http://localhost:5000'
 
 //check seller status
 
-
+useEffect(()=>{
+  const checkLogin = async()=>{
+    try{
+      const {data} = await axios.get("/api/user/is-auth",{withCredentials:true})
+      if(data.success){
+        setUser(data.user)
+      }else{
+        setUser(null)
+      }
+    }catch{
+      setUser(null)
+    }
+  }
+  checkLogin()
+},[])
 
 const logoutUser = async () => {
   try {
