@@ -191,6 +191,8 @@ const Navbar = () => {
                   className="p-1.5 cursor-pointer"
                   onClick={() => {
                     setUser(null);
+                    logoutUser();
+                    navigate("/");
                    
                   }}
                 >
