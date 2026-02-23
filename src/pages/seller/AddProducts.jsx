@@ -49,7 +49,8 @@ const AddProducts = () => {
       }
     } catch (error) {
       // toast.error(error.message);
-        toast.error("All fields are required to be filled",error.message);
+        // toast.error("All fields are required to be filled",error.message);
+        toast.error(error.response?.data?.message || error.message);
     }
   };
 
