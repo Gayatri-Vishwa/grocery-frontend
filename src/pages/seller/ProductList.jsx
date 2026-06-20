@@ -39,79 +39,19 @@ console.log(product.image?.[0]);
               </tr>
             </thead>
             <tbody className="text-sm text-gray-500">
-              {/* {products.map((product) => (
+              {products.map((product) => (
                 
                 <tr key={product._id} className="border-t border-gray-500/20">
                   <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate">
                     <div className="border border-gray-300 rounded overflow-hidden">
-                      <img
-                        src={`${server_url}/images/${product.image[0]}`}
-                        alt={product.name}
-                        className="w-16 h-16 object-cover"
-                      />
+                  
 
-                      {/* <img
+                   <img
                         src={product.image?.[0] || "/placeholder.png"}
                         alt={product.name}
                           className="w-16 h-16 object-cover"
                       />
-                       */}
-                    {/* </div>
-                    <span className="truncate max-sm:hidden w-full">
-                      {product.name}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">{product.category}</td>
-                  <td className="px-4 py-3 max-sm:hidden">
-                    ${product.offerPrice}
-                  </td>
-                  <td className="px-4 py-3">
-                    <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
-                      <input
-                        onClick={() =>
-                          toggleStock(product._id, !product.inStock)
-                        }
-                        // checked={product.inStock}
-                        type="checkbox"
-                        className="sr-only peer"
-                        defaultChecked={product.inStock} */}
-                      {/* /> */}
-                   
-                      {/* <button
-                        onClick={() =>
-                          navigate(`/seller/edit-product/${product._id}`)
-                        }
-                        className="px-3 py-1 bg-indigo-500 text-white rounded"
-                      >
-                        Edit
-                      </button>
-                      <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
-                      <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
-                    </label>
-                  </td>
-                </tr> */}
-                   {/* ))}  */}
-                {products.map((product) => {
-  console.log(product);
-  console.log(product.image);
-  console.log(product.image?.[0]);
-
-  return (
-       <tr key={product._id} className="border-t border-gray-500/20">
-                  <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate">
-                    <div className="border border-gray-300 rounded overflow-hidden">
-                      <img
-                        src={`${server_url}/images/${product.image[0]}`}
-                        alt={product.name}
-                        className="w-16 h-16 object-cover"
-                      />
-
-                      {/* <img
-                        src={product.image?.[0] || "/placeholder.png"}
-                        alt={product.name}
-                          className="w-16 h-16 object-cover"
-                      />
-                       */}
+                       
                     </div>
                     <span className="truncate max-sm:hidden w-full">
                       {product.name}
@@ -146,9 +86,8 @@ console.log(product.image?.[0]);
                     </label>
                   </td>
                 </tr>
-  );
-})}
-           
+                   ))} 
+       
 
 
             </tbody>
