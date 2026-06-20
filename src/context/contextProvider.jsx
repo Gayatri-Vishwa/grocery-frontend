@@ -19,8 +19,7 @@ const AppContextProvider = ({ children }) => {
     const [cartArray, setCartArray] = useState([]);
     // State
 
-let server_url='http://localhost:5000'
-  
+let server_url="https://grocery-backend-rk04.onrender.com"
 
 //check seller status
 

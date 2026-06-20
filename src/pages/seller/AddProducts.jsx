@@ -30,7 +30,6 @@ const AddProducts = () => {
       }
 
 
-
       // const { data } = await axios.post("/api/product/add-product", formData);
       const { data } = await axios.post("/api/product/add-product", formData, {
         withCredentials: true,
