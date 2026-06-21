@@ -4,7 +4,7 @@ import { assets } from "../assets/assets";
 // import { assets } from '../assets/assets'
 
 function ProductCard({ product }) {
-  const { navigate, addToCart, cartItems, removeFromCart } =
+  const { navigate, addToCart, cartItems, removeFromCart ,user} =
     useContext(AppContext);
   return (
     product && (
@@ -18,7 +18,6 @@ function ProductCard({ product }) {
         className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full"
       >
         <div className="group cursor-pointer flex items-center justify-center px-2">
- 
           <img
             className="group-hover:scale-105 transition max-w-26 md:max-w-36"
             src={product.image?.[0] || "/placeholder.png"}
@@ -58,7 +57,14 @@ function ProductCard({ product }) {
               {!cartItems?.[product._id] ? (
                 <button
                   className="flex items-center justify-center gap-1 bg-indigo-100 border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-indigo-600 font-medium"
-                  onClick={() => addToCart(product._id)}
+                  // onClick={() => addToCart(product._id)}
+                  onClick={() => {
+                    if (!user) {
+                      navigate("/login"); // ya toast.error("Please login first")
+                      return;
+                    }
+                    addToCart(product._id);
+                  }}
                 >
                   <svg
                     width="14"
