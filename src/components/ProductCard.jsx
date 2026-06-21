@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 // import { assets } from '../assets/assets'
+import toast from 'react-hot-toast'
 
 function ProductCard({ product }) {
   const { navigate, addToCart, cartItems, removeFromCart ,user} =
@@ -60,7 +61,8 @@ function ProductCard({ product }) {
                   // onClick={() => addToCart(product._id)}
                   onClick={() => {
                     if (!user) {
-                      navigate("/login"); // ya toast.error("Please login first")
+                      // navigate("/login"); // ya toast.error("Please login first")
+                     toast.error("Please login first")
                       return;
                     }
                     addToCart(product._id);
