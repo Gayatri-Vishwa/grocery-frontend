@@ -82,6 +82,11 @@ function Cart() {
       if (!selectedAddress) {
         return toast.error("Please select an address");
       }
+         // Cart empty check
+    if (cartArray.length === 0) {
+      return toast.error("Cart is empty");
+    }
+
       //place order with cod
       if (paymentOption === "COD") {
         const { data } = await axios.post("/api/order/cod", {
