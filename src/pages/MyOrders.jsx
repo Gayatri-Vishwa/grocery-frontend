@@ -5,23 +5,23 @@ import toast from "react-hot-toast";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
-  const {axios,user,server_url}=useContext(AppContext)
+  const { axios, user, server_url } = useContext(AppContext);
 
-  const fetchOrders = async() => {
-   try {
-    const {data}=await axios.get('/api/order/user')
-    if(data.success){
-      setMyOrders(data.orders)
-    }else{
-      toast.error(data.message)
+  const fetchOrders = async () => {
+    try {
+      const { data } = await axios.get("/api/order/user");
+      if (data.success) {
+        setMyOrders(data.orders);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
-   } catch (error) {
-    toast.error(error.message)
-   }
   };
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchOrders();
     }
   }, [user]);
@@ -50,10 +50,15 @@ function MyOrders() {
             >
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="p-4 rounded-lg">
-                  <img
+                  {/* <img
                     src={`${server_url}/images/${item.product.image[0]}`}
                     alt=""
                     className="w-16 h-16"
+                  /> */}
+                  <img
+                    src={item.product.image?.[0] || "/placeholder.png"}
+                    alt={item.product.name}
+                    className="w-16 h-16 object-cover"
                   />
                 </div>
                 <div className="ml-4">
@@ -67,7 +72,6 @@ function MyOrders() {
                 <p>Date: {new Date(order.createdAt).toLocaleString()}</p>
               </div>
               <p>Amount : ${item.product.offerPrice * item.quantity}</p>
-              
             </div>
           ))}
         </div>
