@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState,useCallback } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AppContext } from "../context/AppContext";
 import { dummyAddress } from "../assets/assets";
 import toast from "react-hot-toast";
@@ -18,13 +18,13 @@ function Cart() {
     removeFromCart,
     cartItems,
     cartArray,
- fetchUser,
+    fetchUser,
     user,
     server_url,
     setCartItems,
     axios,
     // getCart,
-    setCartArray
+    setCartArray,
   } = useContext(AppContext);
 
   //state to store products available in cart
@@ -37,93 +37,76 @@ function Cart() {
   //state for payment option
   const [paymentOption, setPaymentOption] = useState("COD");
 
-
-
-
-const getAddress = async () => {
-  try {
-    const { data } = await axios.get("/api/address/get");
-    if (data.success) {
-      setAddress(data.addresses);
-   
-      if(data.addresses.length > 0 )
-      {  setSelectedAddress(data.addresses[0]); // Set default selected address
-        }
-    } else {
-      toast.error(data.message);
-    }
-  } catch (error) {
-  toast.error(error.response?.data?.message || "Failed to fetch address");
-
-  }
-}
-
-
-
-
-
-useEffect(() => {
-  if (products.length > 0 && cartItems) {
-    const tempArray = [];
-
-    for (const key in cartItems) {
-      const product = products.find((p) => p._id === key);
-      if (product) {
-        tempArray.push({
-          ...product,
-          quantity: cartItems[key],
-        });
-      }
-    }
-    setCartArray(tempArray);
-  }
-}, [products, cartItems]);
-
-
-
-useEffect(() => {
-  if(user){
-    getAddress();
-
-  }
-},[user])
-
-
-  const placeOrder = async() => {
+  const getAddress = async () => {
     try {
-      if(!selectedAddress){
-        return toast.error("Please select an address")
-      }
-      //place order with cod
-      if(paymentOption==="COD"){
-        const {data}=await axios.post('/api/order/cod',{
-          items:cartArray.map((item)=>({
-            product:item._id,
-            quantity:item.quantity
+      const { data } = await axios.get("/api/address/get");
+      if (data.success) {
+        setAddress(data.addresses);
 
-          })),
-            address: selectedAddress._id,
-      })
-      if(data.success){
-        toast.success(data.message)
-         setCartItems({});
-        setCartArray([]);
-        
-         fetchUser();  
-     
-        navigate('/my-orders')
-      }
-      else{
-        toast.error(data.message)
-      }
+        if (data.addresses.length > 0) {
+          setSelectedAddress(data.addresses[0]); // Set default selected address
+        }
+      } else {
+        toast.error(data.message);
       }
     } catch (error) {
-         toast.error(error.message)
+      toast.error(error.response?.data?.message || "Failed to fetch address");
     }
-    
   };
 
+  useEffect(() => {
+    if (products.length > 0 && cartItems) {
+      const tempArray = [];
 
+      for (const key in cartItems) {
+        const product = products.find((p) => p._id === key);
+        if (product) {
+          tempArray.push({
+            ...product,
+            quantity: cartItems[key],
+          });
+        }
+      }
+      setCartArray(tempArray);
+    }
+  }, [products, cartItems]);
+
+  useEffect(() => {
+    if (user) {
+      getAddress();
+    }
+  }, [user]);
+
+  const placeOrder = async () => {
+    try {
+      if (!selectedAddress) {
+        return toast.error("Please select an address");
+      }
+      //place order with cod
+      if (paymentOption === "COD") {
+        const { data } = await axios.post("/api/order/cod", {
+          items: cartArray.map((item) => ({
+            product: item._id,
+            quantity: item.quantity,
+          })),
+          address: selectedAddress._id,
+        });
+        if (data.success) {
+          toast.success(data.message);
+          setCartItems({});
+          setCartArray([]);
+
+          fetchUser();
+
+          navigate("/my-orders");
+        } else {
+          toast.error(data.message);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return products?.length > 0 && cartItems ? (
     <div className="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 mx-auto">
@@ -139,23 +122,29 @@ useEffect(() => {
           <p className="text-center">Action</p>
         </div>
 
-          
-            {cartArray?.map((product) => (
-  <div key={product._id} className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-3"
+        {cartArray?.map((product) => (
+          <div
+            key={product._id}
+            className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-3"
           >
             <div className="flex items-center md:gap-6 gap-3">
               <div
                 onClick={() => {
                   navigate(
-                    `/products/${product.category.toLowerCase()}/${product._id}`
+                    `/products/${product.category.toLowerCase()}/${product._id}`,
                   );
                   scrollTo(0, 0); //scrollto... it will navigate on the top of page
                 }}
                 className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden"
               >
-                <img
+                {/* <img
                   className="max-w-full h-full object-cover"
                   src={`${server_url}/images/${product.image[0]}`}
+                  alt={product.name}
+                /> */}
+                <img
+                  className="max-w-full h-full object-cover"
+                  src={product.image?.[0] || "/placeholder.png"}
                   alt={product.name}
                 />
               </div>
@@ -177,7 +166,7 @@ useEffect(() => {
                       {/* <option value={0}>0 (Remove)</option> */}
 
                       {Array(
-                        cartItems[product._id] > 9 ? cartItems[product._id] : 9
+                        cartItems[product._id] > 9 ? cartItems[product._id] : 9,
                       )
                         .fill("")
                         .map((_, index) => (
@@ -217,8 +206,9 @@ useEffect(() => {
         ))}
 
         <button
-        onClick={()=>navigate('/products')}
-        className="group cursor-pointer flex items-center mt-8 gap-2 text-indigo-500 font-medium">
+          onClick={() => navigate("/products")}
+          className="group cursor-pointer flex items-center mt-8 gap-2 text-indigo-500 font-medium"
+        >
           <svg
             width="15"
             height="11"
@@ -234,7 +224,6 @@ useEffect(() => {
               strokeLinejoin="round"
             />
           </svg>
-          
           Continue Shopping
         </button>
       </div>
@@ -246,15 +235,11 @@ useEffect(() => {
         <div className="mb-6">
           <p className="text-sm font-medium uppercase">Delivery Address</p>
           <div className="relative flex justify-between items-start mt-2">
-
-
             <p className="text-gray-500">
               {selectedAddress
                 ? `${selectedAddress.street},${selectedAddress.city},${selectedAddress.state},${selectedAddress.country}`
                 : "no Address Found"}
             </p>
-
-
 
             <button
               onClick={() => setShowAddress(!showAddress)}
@@ -263,7 +248,6 @@ useEffect(() => {
               Change
             </button>
 
-            
             {showAddress && (
               <div className="absolute top-12 py-1 bg-white border border-gray-300 text-sm w-full">
                 <p
@@ -277,7 +261,7 @@ useEffect(() => {
                 </p>
                 <p
                   onClick={() => {
-                      console.log("Navigating to /add-address");
+                    console.log("Navigating to /add-address");
                     navigate("/add-address");
                     setShowAddress(false);
                   }}
@@ -317,7 +301,7 @@ useEffect(() => {
           </p>
           <p className="flex justify-between text-lg font-medium mt-3">
             <span>Total Amount:</span>
-            <span>${totalCartAmmount() +(totalCartAmmount() * 2) / 100 }</span>
+            <span>${totalCartAmmount() + (totalCartAmmount() * 2) / 100}</span>
           </p>
         </div>
 
