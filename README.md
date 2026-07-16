@@ -1,12 +1,69 @@
-# React + Vite
+# 🛒 Grocery E-Commerce - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive **Grocery E-Commerce** web application built with **React.js**. It provides users with a seamless online shopping experience, including product browsing, cart management, secure authentication, and an intuitive user interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+* 🔐 User Registration & Login
+* 🛍️ Browse Grocery Products
+* 🔎 Product Search & Categories
+* 🛒 Add to Cart & Cart Management
+* ❤️ Wishlist Support
+* 📦 Order Placement
+* 💳 Secure Checkout Experience
+* 📱 Fully Responsive Design
+* 🎨 Modern & User-Friendly Interface
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+* React.js
+* Tailwind CSS
+* Redux Toolkit
+* React Router DOM
+* Axios
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/Gayatri-Vishwa/Grocery-Frontend.git
+cd Grocery-Frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the project root and add:
+
+```env
+VITE_API_URL=https://grocery-backend-rk04.onrender.com
+```
+
+---
+
+## 🌐 Live Demo
+
+**Frontend:** https://grocery-frontend-iota.vercel.app
+
+---
+
+## 🔗 Backend API
+
+**Backend:** https://grocery-backend-rk04.onrender.com
+
+---
+
+## 👩‍💻 Author
+
+**Gayatri Vishwakarma**
+
+* Portfolio: https://portfolio-azure-gayatri.vercel.app/
+* GitHub: https://github.com/Gayatri-Vishwa
