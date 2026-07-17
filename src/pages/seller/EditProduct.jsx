@@ -14,44 +14,22 @@ const EditProduct = () => {
     }
 
     const formData = new FormData();
-    files.forEach(file => formData.append("image", file));
+    files.forEach((file) => formData.append("image", file));
 
     try {
       const { data } = await axios.put(
         `/api/product/update-image/${id}`,
         formData,
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       if (data.success) {
         toast.success("Images updated successfully ✅");
       }
     } catch (err) {
-      toast.error("Update failed ❌",err);
+      toast.error("Update failed ❌", err);
     }
   };
-
-
-//     const updateProductImages = async (productId, files) => {
-//   const formData = new FormData();
-
-//   files.forEach(file => {
-//     formData.append("image", file);
-//   });
-
-//   const res = await axios.put(
-//     `${import.meta.env.VITE_BACKEND_URL}/api/product/update-image/${productId}`,
-//     formData,
-//     {
-//       withCredentials: true,
-//       headers: {
-//         "Content-Type": "multipart/form-data",
-//       },
-//     }
-//   );
-
-//   console.log(res.data);
-// };
 
   return (
     <div>

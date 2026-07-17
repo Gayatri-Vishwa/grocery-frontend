@@ -50,11 +50,7 @@ function MyOrders() {
             >
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="p-4 rounded-lg">
-                  {/* <img
-                    src={`${server_url}/images/${item.product.image[0]}`}
-                    alt=""
-                    className="w-16 h-16"
-                  /> */}
+                 
                   <img
                     src={item.product.image?.[0] || "/placeholder.png"}
                     alt={item.product.name}

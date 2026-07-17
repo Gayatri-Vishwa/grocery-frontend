@@ -26,9 +26,7 @@ const AddProducts = () => {
 
       for (let i = 0; i < files.length; i++) {
         formData.append("image", files[i]);
-        
       }
-
 
       // const { data } = await axios.post("/api/product/add-product", formData);
       const { data } = await axios.post("/api/product/add-product", formData, {
@@ -47,15 +45,9 @@ const AddProducts = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      // toast.error(error.message);
-        // toast.error("All fields are required to be filled",error.message);
-        toast.error(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
-
-
-
-
 
   return (
     <div className="py-1 flex flex-col justify-between bg-white">
@@ -68,11 +60,6 @@ const AddProducts = () => {
               .map((_, index) => (
                 <label key={index} htmlFor={`image${index}`}>
                   <input
-                    // onChange={(e) => {
-                    //   const updatedFiles = { ...files };
-                    //   updatedFiles[index] = e.target.files[0];
-                    //   setFiles(updatedFiles);
-                    // }}
                     onChange={(e) => {
                       const updatedFiles = [...files];
                       updatedFiles[index] = e.target.files[0];
@@ -156,7 +143,7 @@ const AddProducts = () => {
             </label>
             <input
               id="product-price"
-              onChange={(e)=>setPrice(e.target.value)}
+              onChange={(e) => setPrice(e.target.value)}
               // onChange={(e) => setOfferPrice(e.target.value)}
               value={price}
               type="number"
@@ -172,7 +159,7 @@ const AddProducts = () => {
             <input
               id="offer-price"
               onChange={(e) => setOfferPrice(e.target.value)}
-               value={offerPrice}
+              value={offerPrice}
               type="number"
               placeholder="0"
               className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"

@@ -17,8 +17,7 @@ const toggle=()=>{
   if(add){
     console.log(product._id)
    removeFromCart(product._id) 
-  //  setAdd(true) //does not change the state //so not re render
-    setAdd(prev=> !prev)
+   setAdd(prev=> !prev)
     return
   }else{
     addToCart(product._id)
@@ -56,8 +55,7 @@ useEffect(()=>{
                     </div>
 
                     <div className="border border-gray-500/30 max-w-100 rounded overflow-hidden">
-                        {/* <img src={`http://localhost:5000/images/${thumbnail}`} alt="Selected product" className="w-full h-full object-cover" /> */}
-                   <img src={thumbnail} alt="Selected product" className="w-full h-full object-cover" />
+                  <img src={thumbnail} alt="Selected product" className="w-full h-full object-cover" />
                     </div>
                 </div>
 

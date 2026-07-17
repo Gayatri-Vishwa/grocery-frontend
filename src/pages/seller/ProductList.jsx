@@ -20,8 +20,7 @@ const ProductList = () => {
     }
   };
   
-// console.log(product.image);
-// console.log(product.image?.[0]);
+
   return (
     <div className="flex-1 py-10 flex flex-col justify-between">
       <div className="w-full md:p-10 p-4">

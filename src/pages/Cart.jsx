@@ -2,12 +2,9 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AppContext } from "../context/AppContext";
 import { dummyAddress } from "../assets/assets";
 import toast from "react-hot-toast";
-// import { get } from "mongoose";
-
-// import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  // const navigate=useNavigate()
+ 
   const {
     navigate,
     products,
@@ -27,9 +24,7 @@ function Cart() {
     setCartArray,
   } = useContext(AppContext);
 
-  //state to store products available in cart
-  // const [cartArray, setCartArray] = useState([]);
-  //state to store products available in cart
+  
   const [address, setAddress] = useState([]);
   const [showAddress, setShowAddress] = useState(false);
   //state for selected adddres
